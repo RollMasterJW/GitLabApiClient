@@ -91,6 +91,12 @@ namespace GitLabApiClient
         IToDoListClient ToDoList { get; }
 
         /// <summary>
+        /// Access GitLab's Environment-List API.
+        /// </summary>
+        IEnvironmentClient Environments { get; }
+
+
+        /// <summary>
         /// Host address of GitLab instance. For example https://gitlab.example.com or https://gitlab.example.com/api/v4/.
         /// </summary>
         string HostUrl { get; }

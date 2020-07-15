@@ -59,6 +59,7 @@ namespace GitLabApiClient
             var treeQueryBuilder = new TreeQueryBuilder();
             var jobQueryBuilder = new JobQueryBuilder();
             var toDoListBuilder = new ToDoListQueryBuilder();
+            var environmentQueryBuilder = new EnvironmentQueryBuilder();
 
             Issues = new IssuesClient(_httpFacade, issuesQueryBuilder, projectIssueNotesQueryBuilder);
             Uploads = new UploadsClient(_httpFacade);
@@ -78,6 +79,7 @@ namespace GitLabApiClient
             Runners = new RunnersClient(_httpFacade);
             ToDoList = new ToDoListClient(_httpFacade, toDoListBuilder);
             Connection = new ConnectionClient(_httpFacade);
+            Environments = new EnvironmentClient(_httpFacade, environmentQueryBuilder, jobQueryBuilder);
         }
 
         /// <summary>
@@ -164,6 +166,12 @@ namespace GitLabApiClient
         /// Access GitLab's ToDo-List API.
         /// </summary>
         public IToDoListClient ToDoList { get; }
+
+        /// <summary>
+        /// Access GitLab's Environments API.
+        /// </summary>
+        public IEnvironmentClient Environments { get; }
+
 
         /// <summary>
         /// Provides a client connection to make rest requests to HTTP endpoints.
