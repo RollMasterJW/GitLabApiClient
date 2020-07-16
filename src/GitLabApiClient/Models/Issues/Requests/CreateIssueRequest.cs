@@ -21,6 +21,9 @@ namespace GitLabApiClient.Models.Issues.Requests
             Title = title;
         }
 
+        [JsonProperty("iid")]
+        public int? Iid { get; set; }
+
         /// <summary>
         /// The title of an issue.
         /// </summary>

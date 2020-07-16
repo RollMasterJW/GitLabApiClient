@@ -30,5 +30,8 @@ namespace GitLabApiClient.Models.Notes.Requests
         /// </summary>
         [JsonProperty("created_at")]
         public DateTime? CreatedAt { get; set; }
+
+        [JsonProperty("sudo")]
+        public int? Sudo { get; set; }
     }
 }
