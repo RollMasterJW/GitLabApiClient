@@ -40,17 +40,24 @@ namespace GitLabApiClient
             return await _httpFacade.GetPagedList<Models.Environments.Responses.Environment>(url);
         }
 
-        public async Task<IList<Job>> GetJobsAsync(ProjectId projectId, int enviromnentId, Action<JobQueryOptions> options = null)
+        public async Task<IList<Job>> GetJobsAsync(ProjectId projectId, int enviromnentId, Action<EnvironmentQueryOptions> options = null)
         {
-            var queryOptions = new JobQueryOptions();
+            var queryOptions = new EnvironmentQueryOptions();
             options?.Invoke(queryOptions);
 
-            string url = _jobQueryBuilder.Build($"projects/{projectId}/pipelines/{enviromnentId}/jobs", queryOptions);
+            string url = _queryBuilder.Build($"projects/{projectId}/pipelines/{enviromnentId}/jobs", queryOptions);
             return await _httpFacade.GetPagedList<Job>(url);
         }
 
         public async Task<EnvironmentDetail> RetryAsync(ProjectId projectId, int environmentId) =>
                     await _httpFacade.Post<EnvironmentDetail>($"projects/{projectId}/pipelines/{environmentId}/retry");
+
+        public async Task DeleteAsync(ProjectId projectId, int environmentId) =>
+            await _httpFacade.Delete($"projects/{projectId}/environments/{environmentId}");
+
+        public async Task<Models.Environments.Responses.Environment> StopAsync(ProjectId projectId, int environmentId) =>
+                    await _httpFacade.Post<Models.Environments.Responses.Environment>($"projects/{projectId}/environments/{environmentId}/stop");
+
 
     }
 
