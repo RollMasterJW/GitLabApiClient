@@ -100,6 +100,9 @@ namespace GitLabApiClient
         public async Task<Issue> GetAsync(ProjectId projectId, int issueId) =>
             await _httpFacade.Get<Issue>($"projects/{projectId}/issues/{issueId}");
 
+        public async Task DeleteIssueAsync(ProjectId projectId, int issueIid) =>
+            await _httpFacade.Delete($"projects/{projectId}/issues/{issueIid}");
+
         /// <summary>
         /// Retrieves issues from a project.
         /// By default retrieves opened issues from all users.

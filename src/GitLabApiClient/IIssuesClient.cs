@@ -50,6 +50,8 @@ namespace GitLabApiClient
         /// <returns>Issues satisfying options.</returns>
         Task<IList<Issue>> GetAllAsync(ProjectId projectId = null, GroupId groupId = null, Action<IssuesQueryOptions> options = null);
 
+        Task DeleteIssueAsync(ProjectId projectId, int issueIid);
+
         /// <summary>
         /// Retrieves project issue.
         /// </summary>
